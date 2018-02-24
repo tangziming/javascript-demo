@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1 {
+            height: 200px;
+            width: 200px;
+            background: yellow;
+            position: absolute;
+        }
+        #div2{
+            height: 400px;
+            width: 800px;
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            background: red;
+        }
+    </style>
+    <script>
+
+        window.onload = function () {
+            var odiv = document.getElementById('div1');
+            var odiv2 = document.getElementById('div2');
+            
+            var span1 = document.getElementById('span1');
+            var span2 = document.getElementById('span2');
+            var span3 = document.getElementById('span3');
+            
+            var disX = 0;
+            var disY = 0;
+
+            odiv.onmousedown = function (ev) {
+                var oEvent = ev || event;
+                var odiv = document.getElementById('div1');
+                disX = oEvent.pageX - odiv.offsetLeft;  
+                disY = oEvent.pageY - odiv.offsetTop;   
+                span1.innerHTML=disX+'|'+disY;
+                document.onmousemove = function (ev) {
+                    var oEvent = ev || event;
+                    var odiv = document.getElementById('div1');
+                    var l = oEvent.pageX - disX;
+                    var t = oEvent.pageY - disY;
+                    span2.innerHTML=l+'|'+t;
+                    if (l < 0) {
+                        l = 0;
+                    } else if (l > odiv2.offsetWidth-odiv.offsetWidth) {
+                        l =  odiv2.offsetWidth-odiv.offsetWidth;
+                    }
+                    if (t < 0) {
+                        t = 0;
+                    } else if (t >odiv2.offsetHeight - odiv.offsetHeight) {
+                        t = odiv2.offsetHeight- odiv.offsetHeight;
+                    }
+                    odiv.style.left = l + 'px';
+                    odiv.style.top = t + 'px';
+                };
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
+                return false;
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <div id="div2">
+        <div id="div1">
+            <span id="span1"></span>
+            
+            <span id="span3">|||</span>
+            <span id="span2"></span>
+            
+        </div>
+    </div>
+</body>
+
+</html>

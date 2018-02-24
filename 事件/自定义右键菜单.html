@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    body{
+        height: 3000px;
+    }
+    #div1{
+        display: none;
+        position: absolute;
+    }
+    li{
+        list-style: none;
+        background: gray;
+        width: 100px;
+        border: 1px solid black;
+    }
+</style>
+<script>
+
+    window.onload=function(){
+
+        document.oncontextmenu=function(ev){
+           var odiv= document.getElementById('div1');
+            var oEvent=ev||event;
+            odiv.style.left=oEvent.pageX+'px';
+            odiv.style.top=oEvent.pageY+'px';
+            odiv.style.display='block';
+            return false; //阻止默认事件
+            
+        }
+        document.onclick=function(ev){
+            var odiv= document.getElementById('div1');
+            var oEvent=ev||event;
+            odiv.style.display='none';
+        }
+    }
+</script>
+<body>
+   <div id="div1">
+       <ul>
+           <li>111111</li>
+           <li>222222</li>
+           <li>333333</li>
+       </ul>
+   </div> 
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div {
+            height: 200px;
+            width: 200px;
+            background: yellow;
+            position: absolute;
+        }
+    </style>
+    <script>
+
+        window.onload = function () {
+            var odiv = document.getElementById('div1');
+            var disX = 0;
+            var disY = 0;
+
+            odiv.onmousedown = function (ev) {
+                var oEvent = ev || event;
+                var odiv = document.getElementById('div1');
+                disX = oEvent.clientX - odiv.offsetLeft;
+                disY = oEvent.clientY - odiv.offsetTop;
+                if (odiv.setCapture) {
+                    document.onmousemove = mousemove;
+                    document.onmouseup = mouseup;
+                    odiv.setCapture();//事件捕获，防止拖拽时，选中其他文字
+
+                } else {
+                    document.onmousemove = mousemove;
+                    document.onmouseup = mouseup;
+
+                    return false;
+                }
+            };
+            function mousemove(ev) {
+                var oEvent = ev || event;
+                var odiv = document.getElementById('div1');
+                var l = oEvent.clientX - disX;
+                var t = oEvent.clientY - disY;
+                if (l < 0) {
+                    l = 0;
+                } else if (l > document.documentElement.clientWidth - odiv.offsetWidth) {
+                    l = document.documentElement.clientWidth - odiv.offsetWidth;
+                }
+                if (t < 0) {
+                    t = 0;
+                } else if (t > document.documentElement.clientHeight - odiv.offsetHeight) {
+                    t = document.documentElement.clientHeight - odiv.offsetHeight;
+                }
+                odiv.style.left = l + 'px';
+                odiv.style.top = t + 'px';
+            };
+            function mouseup() {
+                document.onmousemove = null;
+                document.onmouseup = null;
+                if (odiv.releaseCapture) {
+                    odiv.releaseCapture();//解除事件捕获
+                }
+            };
+        };
+    </script>
+</head>
+
+<body>sdklfjlksdjfsdfs
+    <div id="div1">
+        <span>ssssssssss</span>
+    </div>
+    sdklfjlksdjfsdfs
+
+</body>
+
+</html>

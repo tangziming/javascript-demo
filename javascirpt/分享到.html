@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 300px;
+            position: absolute;
+            left: -200px;
+            background-color: blueviolet;
+        }
+        #div1 span {
+            width: 30px;
+            height: 100px;
+            position: absolute;
+            left: 200px;
+            top: 100px;
+            background-color:rosybrown;
+            line-height: 30px;
+        }
+    </style>
+
+    <script>
+    
+        window.onload=function(){
+            var oDiv=document.getElementById('div1');
+           oDiv.onmouseover=function(){
+               startmove(0);
+           }
+           oDiv.onmouseout=function(){
+               startmove(-200);
+           }
+        };
+        var timer =null;//存储定时器
+        function startmove(target){ //运动函数，参数为 目标位置
+            var speed=0;//设置速度
+            var oDiv=document.getElementById('div1');
+            if(oDiv.offsetLeft<target){ //判断速度的正负（应该收进，还是，弹出）
+                speed=19;
+            }else{
+                speed=-19;
+            }
+            clearInterval(timer);//关闭原有定时器
+            timer=setInterval(function(){ //设置定时器
+                if(Math.abs(target-oDiv.offsetLeft)<19){//Math.abs()方法求绝对值
+                    clearInterval(timer); //到达目标位置时关闭定时器
+                    oDiv.style.left=target+'px';//令oDiv到达target 目标位置
+                }
+                else{
+                    oDiv.style.left=oDiv.offsetLeft+speed+'px';  //没到达目标位置，继续运动
+                }
+            },30)
+        }
+        
+    </script>
+</head>
+<body>
+    <div id="div1">
+            <span>分享到</span>
+    </div>
+    
+    
+</body>
+</html>

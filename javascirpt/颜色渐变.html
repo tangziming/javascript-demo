@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 300px;
+            background-color: red;
+            opacity: 0.3;
+        }
+     
+    </style>
+
+    <script>
+    
+        window.onload=function(){
+            var oDiv=document.getElementById('div1');
+           oDiv.onmouseover=function(){
+               startmove(100);
+           }
+           oDiv.onmouseout=function(){
+               startmove(30);
+           }
+        };
+        var a =30;
+        var timer =null;//存储定时器
+        function startmove(target){ //运动函数，参数为 目标位置
+            var speed=0;//设置速度
+            var oDiv=document.getElementById('div1');
+            if(a<target){ //判断速度的正负（应该收进，还是，弹出）
+                speed=10;
+            }else{
+                speed=-10;
+            }
+            clearInterval(timer);//关闭原有定时器
+            timer=setInterval(function(){ //设置定时器
+                if(a==target){
+                    clearInterval(timer); //到达目标位置时关闭定时器
+                }
+                else{
+                    a=a+speed; //没到达目标位置，继续运动
+                    oDiv.style.opacity=a/100;
+                }
+            },30)
+        }
+        
+    </script>
+</head>
+<body>
+    <div id="div1">
+           
+    </div>
+    
+    
+</body>
+</html>

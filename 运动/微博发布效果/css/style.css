@@ -1,0 +1,50 @@
+
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+    #div1{
+        width: 500px;
+        height: 700px;
+        border: 1px solid red;
+        margin: auto
+    }
+    #div2{
+        width: 460px;
+        margin: 10px auto;
+        border: 3px solid blue;
+        height: 165px;
+    }
+    #div3{
+        width: 460px;
+        margin: 10px auto;
+        border: 3px solid yellowgreen;
+        height: 490px;
+        overflow:auto;
+        overflow-x: hidden;
+    }
+    textarea{
+        width: 458px;
+        height: 100px;
+        
+    }
+    input{
+        float: right;
+        margin: 5px;
+        width: 50px;
+        height: 30px;
+        color: rgb(86, 124, 11);
+        background: rgb(255, 206, 44);
+        font-family: '微软雅黑';
+    }
+    ul{
+        width: 460px;
+    }
+    li{
+        list-style: none;
+        width: 400px;
+        border-bottom: 1px gray dashed;
+        padding: 5px; 
+        margin:10px 20px 10px 10px;
+        word-wrap:break-word;
+    }

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+            table td {
+                border: 1px solid rgb(34, 104, 109);
+                margin: 0px;
+                padding: 0px;
+                text-align: center;
+            }
+            table {
+                width: 500px;             
+                margin: 50px auto;
+            }
+            #div1{
+                width: 500px;
+                margin: auto;
+            }
+            
+        </style>
+    <script>
+        function show(){//隔行变色
+            var oTable = document.getElementById('table1');
+            var oTbody=oTable.getElementsByTagName('tbody')[0];
+            var oTr=oTbody.getElementsByTagName('tr');            
+            var oldcolor='';//存储旧颜色
+            for(var i=0;i<oTr.length;i++){
+                oTr[i].onmouseover=function (){//鼠标悬浮变色
+                    oldcolor=this.style.background;//存储旧颜色
+                    this.style.background='gray';//变色成gray
+                }
+                oTr[i].onmouseout=function (){
+                    this.style.background=oldcolor;//恢复成旧颜色
+                }
+                if(i%2){//隔行变色
+                  oTr[i].style.background='';
+                }else{
+                    oTr[i].style.background='#c0c0c0';
+                }
+            }
+        }
+        
+            window.onload =function (){                
+            var oTable = document.getElementById('table1');
+            var oTbody=oTable.getElementsByTagName('tbody')[0];
+            var oTr=oTbody.getElementsByTagName('tr');  
+            var id=oTr.length+1//tr的个数+1   赋给id；
+            var oName=document.getElementById('name');
+            var oAge=document.getElementById('age');
+            var oBtn=document.getElementById('btn1');
+            oBtn.onclick=function(){
+                var ctr=document.createElement('tr');
+                
+                var ctd=document.createElement('td');
+                ctd.innerHTML=id++;
+                ctr.appendChild(ctd);
+
+                var ctd=document.createElement('td');
+                ctd.innerHTML=oName.value;
+                ctr.appendChild(ctd);
+
+                var ctd=document.createElement('td');
+                ctd.innerHTML=oAge.value;
+                ctr.appendChild(ctd);
+
+                
+
+                oTbody.appendChild(ctr); 
+               
+                show();                
+            }
+            show();
+            };
+    </script>
+</head>
+
+
+<body>
+    <div id="div1">
+   <label for="name">姓名</label><input type="text" name="" id="name">
+   <label for="age">年龄</label><input type="text" name="" id="age">
+    <input type="button" value="添加" id="btn1">
+    </div>
+    <table cellspacing="0" id="table1" >
+        <thead>
+            <tr>
+                <td >学号</td>
+                <td>姓名</td>
+                <td>年龄</td>
+                             
+            </tr>
+        </thead>
+        <tbody>
+           
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            float: left;
+            margin: 10px;
+        }
+    #div1{
+        width: 50px;
+        height: 50px;
+        background: red;
+    }
+    #div2{
+        width: 200px;
+        height: 200px;
+        background: #ccc;
+        display: none;
+
+    }
+    </style>
+
+    <script>
+    window.onload=function(){
+
+        var odiv1=document.getElementById('div1');
+        var odiv2=document.getElementById('div2');
+
+        odiv2.onmouseover=odiv1.onmouseover=function(){   
+             time1=setTimeout(function(){   //鼠标悬浮在div1 上1秒后 显示 div2
+                odiv2.style.display='block';
+            },1000);
+            clearTimeout(time2);            //清除time2定时器
+                      
+        }
+        odiv2.onmouseout=odiv1.onmouseout=function(){                  
+            time2=setTimeout(function(){   //鼠标移出div1  1秒后 div2消失。
+            odiv2.style.display='none';
+           },1000); 
+           clearTimeout(time1);           //清楚time1定时器   
+        }    
+
+    };
+    </script>
+</head>
+
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        body{
+            height: 2000px;
+        }
+        div {
+            width: 100px;
+            height: 100px;
+            background: yellowgreen;
+            margin: 10px;
+            position: fixed; 
+        }
+        #div1{
+            top: 0px;
+            left: 0px;
+        }
+        #div2{
+            top: 150px;
+            left: 0px;
+        }
+        #div3{
+            top: 0px;
+            left: 150px;
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            document.onmousemove=function(ev){
+                var oEvent=ev||event;
+                var odiv1=document.getElementById('div1');
+                var odiv2=document.getElementById('div2');
+                var odiv3=document.getElementById('div3');
+                odiv1.innerHTML='page</br>'+oEvent.pageX+'px'+'</br>'+oEvent.pageY+'px';
+                odiv2.innerHTML='client</br>'+oEvent.clientX+'px'+'</br>'+oEvent.clientY+'px';
+                odiv3.innerHTML='screen</br>'+oEvent.screenX+'px'+'</br>'+oEvent.screenY+'px';
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="div1">page</div>
+    <div id="div2">clinet</div>
+    <div id="div3">screen</div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br>
+  
+    
+    <span>page：页面区域X  Y，页面加滚动影响</span><br>
+    <span>clinet：页面区域X  Y，不受滚动影响</span><br>
+    <span>screen：显示器的X Y</span>
+</body>
+
+</html>

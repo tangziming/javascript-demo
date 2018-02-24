@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+       #div1{
+           width: 200px;
+           height: 200px;
+           background-color: red;
+           position: absolute;
+           left: 0px;
+       }
+       #div2{
+           position: absolute;
+           left: 600px;
+           top: 0px;
+           width: 1px;
+           height: 500px;
+           background-color: #000;
+       }
+       #div3{
+           position: absolute;
+           left: 1200px;
+           top: 0px;
+           width: 1px;
+           height: 500px;
+           background-color: #000;
+       }
+    </style>
+
+    <script>
+        window.onload=function(){
+           
+            var oBtn1=document.getElementById('btn1');
+            var oBtn2=document.getElementById('btn2');
+            
+            
+           oBtn1.onclick=function(){
+               startmove(600);
+           }
+           oBtn2.onclick=function(){
+               startmove(1200);
+           }
+        };
+        var timer=null;//存储定时器
+        function startmove(target){//运动函数，参数为 目标位置
+            var oDiv=document.getElementById('div1');
+            clearInterval(timer);//关闭定时器,避免多个定时器bug
+           timer = setInterval(function(){//设置定时器
+            var speed=(target-oDiv.offsetLeft)/15;//速度：（目标位置-物体位置）/系数
+            if(speed>0){//避免速度为小数时产生的bug
+                speed=Math.ceil(speed);//速度大于0时 Math.ceil()执行向上舍入，即它总是将数值向上舍入为最接近的整数；
+
+            }else{
+                speed=Math.floor(speed);//速度小于0时，Math.floor()执行向下舍入，即它总是将数值向下舍入为最接近的整数；
+            }
+                if(oDiv.offsetLeft==target){// 物体运动到目标位置时
+                    clearInterval(timer);//关闭定时器
+                }
+                else{
+                    oDiv.style.left=oDiv.offsetLeft+speed+'px';//继续运动
+                }
+                document.title=oDiv.offsetLeft+','+speed;
+                //alert(speed);
+            },30);
+        };
+        
+    </script>
+</head>
+<body>
+    <input type="button" value="600" id="btn1">
+    <input type="button" value="1200" id="btn2">
+    
+   
+    <div id="div1">
+        鼠标悬浮至此   鼠标悬浮至此  
+        鼠标悬浮至此  
+        鼠标悬浮至此  
+        鼠标悬浮至此   
+    </div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+    
+    
+</body>
+</html>

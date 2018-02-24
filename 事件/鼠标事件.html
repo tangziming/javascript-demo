@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    div {
+        height: 200px;
+        width: 200px;
+        background: red;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+    }
+</style>
+<script>
+    function getPos(ev) {//获取position值
+    //浏览器滚动高度
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    //浏览器滚动宽度
+        var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+    //返回 JSON x：鼠标看可视区域高度+浏览器滚动高度  Y：鼠标看可视区域宽度+浏览器滚动宽度
+        return {x:ev.clientX+scrollLeft,y:ev.clientY+scrollTop}
+    }
+
+
+    window.onload = function () {
+
+        document.onmousemove = function (ev) { //鼠标移动时触发
+            var oEvent = ev || event;
+            var div = document.getElementById('div1');
+            var pos=getPos(oEvent) //调用函数
+            div.style.left = pos.x + 'px';
+            div.style.top = pos.y + 'px';
+
+        }
+
+
+
+
+    }
+</script>
+
+<body>
+    <div id="div1"></div>
+</body>
+
+</html>

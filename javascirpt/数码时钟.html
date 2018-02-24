@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body {
+        background-color:  black;
+        font-size: 50px;
+        color: white;
+    }
+    </style>
+    <script>
+        function getdouble(num){  //获取一个双数字  例如01  02；
+            if(num<10){
+                return '0'+num;
+            }else {
+                return ''+num;
+            }
+        }
+    window.onload=function(){
+       function clock(){ //数码时钟
+            var aimg=document.getElementsByTagName('img');
+            var odate=new Date(); //定义Date对象
+            //拼接时间字符串
+            //获取时分秒，并转换成双数字字符串，拼接字符串
+            var time =getdouble(odate.getHours())+getdouble(odate.getMinutes())+getdouble(odate.getSeconds());
+            for(var i=0;i<aimg.length;i++){//遍历所有存储时间图片的a
+                aimg[i].src='images/'+time.charAt(i)+'.png';  //改变图片src，charAt() 方法可返回指定位置的字符。
+            }
+        }
+        setInterval(clock,1000);//设置间隔时间定时器；
+        clock();
+    };
+    </script>
+</head>
+<body>
+    <img src="images/0.png" alt="">
+    <img src="images/0.png" alt="">
+    :
+    <img src="images/0.png" alt="">
+    <img src="images/0.png" alt="">
+    :
+    <img src="images/0.png" alt="">
+    <img src="images/0.png" alt="">
+</body>
+</html>

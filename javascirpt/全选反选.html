@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+     window.onload=a;
+     function a(){
+
+        var obtn1=document.getElementById('btn1');
+        var obtn2=document.getElementById('btn2');
+        var odiv=document.getElementById('div1');
+        var ach=odiv.getElementsByTagName('input');//获取所有input
+
+        obtn2.onclick=function(){//反选
+
+            for(var i=0;i<ach.length;i++){//遍历所有input
+               
+                if(ach[i].checked==true){ //如果，input是选中的
+                    ach[i].checked=false;//那么，改为不选
+                }else {                  //否则
+                    ach[i].checked=true;//改为选中
+                }
+            }
+
+        };
+
+        obtn1.onclick=function(){//全选
+
+            for(var i=0;i<ach.length;i++){//遍历所有input
+
+                ach[i].checked=true;//将input的checked 改为true  即为选中；
+            }
+            
+        };
+
+     };
+    </script>
+</head>
+<body>
+    <input type="button" name="" id="btn1" value="全选">
+    <input type="button" name="" id="btn2" value="反选">
+    <div id="div1">
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id=""><br>
+    <input type="checkbox" name="" id="">
+    </div>
+</body>
+</html>

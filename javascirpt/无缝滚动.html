@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        #div1 {
+           width: 712px;
+           height: 108px;
+           margin: 100px auto;
+           position:relative;
+           background: red;
+           overflow: hidden;
+          
+        }
+        #div1 ul {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            
+        }
+        #div1 ul li{
+            float: left;
+            width: 178px;
+            height: 108px;
+            list-style: none;
+            
+        }
+        input {
+            width: 60px;
+            height: 30px;
+        }
+    </style>
+    <script>
+        window.onload=function () {
+            var odiv = document.getElementById('div1');
+            var oul = odiv.getElementsByTagName('ul')[0];
+            var ali =odiv.getElementsByTagName('li');
+            var oleftbtn =document.getElementById('left');
+            var orightbtn =document.getElementById('right');
+            var speed = 2;
+            oleftbtn.onclick =function (){//向左滚动
+                speed = -2;
+            }
+            orightbtn.onclick =function (){//向右滚动
+                 speed = 2;
+            }
+
+
+            oul.innerHTML=oul.innerHTML+oul.innerHTML;//滚动图片加长一倍
+            oul.style.width=ali[0].offsetWidth*ali.length+'px';//设置ul的长度
+           
+            
+            function move(){
+                if(-oul.offsetLeft>oul.offsetWidth/2){//复位，障眼法
+                    oul.style.left='0';
+                }
+                if(oul.offsetLeft>0){// 复位，障眼法
+                    oul.style.left=-oul.offsetWidth/2+'px';
+                }
+                oul.style.left=oul.offsetLeft+speed+'px'; //滚动
+            }  
+              
+            var time = setInterval(move,30);   //定时器
+
+            odiv.onmouseover=function(){ //鼠标悬浮停止滚动
+                clearInterval(time);
+            }  
+            odiv.onmouseout=function(){ //鼠标离开继续滚动
+               time= setInterval(move,30);
+            }      
+        };
+    </script>
+</head>
+<body>
+    <input type="button" value="左" id="left">
+    <input type="button" value="右" id="right">
+    <div id="div1">
+    <ul>
+        <li><img src="img/1.jpg" alt=""></li>
+        <li><img src="img/2.jpg" alt=""></li>
+        <li><img src="img/3.jpg" alt=""></li>
+        <li><img src="img/4.jpg" alt=""></li>
+    </ul>
+    </div>
+</body>
+</html>

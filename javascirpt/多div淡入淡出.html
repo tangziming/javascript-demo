@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        div{
+            width: 150px;
+            height: 150px;
+            margin: 20px;
+            float: left;
+            background-color: red;
+            opacity: 0.3;
+           
+        }
+    </style>
+    <script>
+        window.onload=function(){
+            var aDiv =document.getElementsByTagName('div');
+            for(var i=0;i<aDiv.length;i++){
+                aDiv[i].alpha=30;
+                aDiv[i].onmouseover=function(){
+                    startmove(this,100)
+                }
+                aDiv[i].onmouseout=function(){
+                    startmove(this,30)
+                }
+            }
+        }
+    var alpha=30;
+
+    function startmove(obj,target){
+        clearInterval(obj.timer);
+        obj.timer =setInterval(function(){
+            var speed=(target-obj.alpha)/5;
+            if(speed>0){
+                speed=Math.ceil(speed);
+            }else{
+                speed=Math.floor(speed);
+            }
+            if(obj.alpha==target){
+                clearInterval(obj.timer);
+            }else{
+                obj.alpha=obj.alpha+speed;
+                obj.style.opacity=obj.alpha/100;
+            }
+        },30);
+    }
+    </script>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>    
+</body>
+</html>
